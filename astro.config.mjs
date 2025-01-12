@@ -5,8 +5,9 @@ import react from '@astrojs/react';
 import svelte from '@astrojs/svelte';
 import vue from '@astrojs/vue';
 import solid from '@astrojs/solid-js';
-
+import node from "@astrojs/node";
 import tailwind from '@astrojs/tailwind';
+import clerk from "@clerk/astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,5 +19,10 @@ export default defineConfig({
       svelte(),
       vue(),
       tailwind(),
+      clerk()
     ],
+    adapter: node({ mode: "standalone" }),
+    output: "server",
 });
+
+

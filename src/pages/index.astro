@@ -10,11 +10,12 @@ import SolidCounter from '../components/solid/SolidCounter';
 
 import VueCounter from '../components/vue/VueCounter.vue';
 import SvelteCounter from '../components/svelte/SvelteCounter.svelte';
+import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/components";
 
+const { title } = Astro.props;
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
-
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -24,6 +25,17 @@ import SvelteCounter from '../components/svelte/SvelteCounter.svelte';
 	</head>
 	<body>
 		<main>
+			<header>
+				<h1>{title}</h1>
+				<nav>
+				  <SignedOut>
+					<SignInButton mode="modal" />
+				  </SignedOut>
+				  <SignedIn>
+					<UserButton />
+				  </SignedIn>
+				</nav>
+			  </header>
 			<react.Counter client:visible>
 				<h1>Hello from React!</h1>
 			</react.Counter>
